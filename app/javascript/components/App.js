@@ -10,9 +10,9 @@ class App extends React.Component {
         <div className="application">
           <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" />
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="#">Store</a>
+            <Link className="navbar-brand" to="/">Store</Link>
           </nav>
-          <div>
+          <div className="container">
             <Route path="/" exact component={Home} />
             <Route path="/products/:id" component={Product} />
           </div>

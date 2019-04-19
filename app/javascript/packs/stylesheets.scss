@@ -1,5 +1,10 @@
 @import '~bootstrap/dist/css/bootstrap';
 
+html {
+  padding: 0;
+  margin: 0;
+}
+
 .application {
   font-family: 'Lato', sans-serif;
 }
@@ -12,4 +17,73 @@
 
 .product img {
   width: 100%;
+}
+
+.action-button {
+  margin-top: 5px;
+  color: #000;
+  padding: 9px;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  background-color: transparent;
+  text-align: center;
+  font-weight: 300;
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  &:before {
+    z-index: -1;
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 0;
+    background-color: #000;
+    right: auto;
+    content: "";
+    height: 100%;
+    transition-duration: 0.3s;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+}
+
+.hero-product {
+  box-sizing: border-box;
+  margin-top: 25px;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+
+  .product-info {
+    padding: 25px;
+    box-sizing: border-box;
+  }
+
+  .product-description {
+    text-align: justify;
+  }
+
+  .actions {
+    .add-to-cart {
+      display: block;
+      width: 80%;
+    }
+
+    .add-to-favorites {
+      border-color: #FF766A;
+      width: 80%;
+      &:before {
+        background-color: #FF766A;
+      }
+    }
+  }
 }

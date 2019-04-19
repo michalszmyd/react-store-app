@@ -1,1 +1,15 @@
 @import '~bootstrap/dist/css/bootstrap';
+
+.application {
+  font-family: 'Lato', sans-serif;
+}
+
+.screen {
+  flex: 1;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.product img {
+  width: 100%;
+}

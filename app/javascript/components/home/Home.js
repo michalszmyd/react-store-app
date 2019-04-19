@@ -1,20 +1,14 @@
 import React from 'react';
-import Product from '../products/Product';
+import ProductPreview from '../products/ProductPreview';
 import ProductService from '../../services/ProductService';
 
 class Home extends React.Component {
-  constructor (props) {
-    super(props);
-
-    this.productService = new ProductService();
-  }
-
   state = {
     products: []
   }
 
   componentDidMount () {
-    this.productService.recent().then((products) => {
+    ProductService.recent().then((products) => {
       this.setState({ products: products })
     }).catch((json) => {
       json.then((data) => {
@@ -36,7 +30,7 @@ class Home extends React.Component {
         <div className="products-board container">
           <div className="row">
             { products.map((product) => (
-              <Product product={product} key={product.id}/>
+              <ProductPreview product={product} key={product.id}/>
             )) }
           </div>
         </div>

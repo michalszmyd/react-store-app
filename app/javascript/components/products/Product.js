@@ -1,14 +1,25 @@
 import React from 'react';
+import ProductService from '../../services/ProductService';
 
 class Product extends React.Component {
+  state = {
+    product: {}
+  }
+
+  componentDidMount () {
+    ProductService.find(this.props.match.params.id).then((product) => {
+      this.setState({
+        product: product
+      })
+    })
+  }
+
   render () {
-    const { name, description, imageUrl } = this.props.product;
+    const { name, description, imageUrl } = this.state.product;
 
     return (
-      <div className="product col-md-3">
-        <h4>{name}</h4>
-        <p>{description}</p>
-        <img src={imageUrl} />
+      <div className="product">
+        <h1>{name}</h1>
       </div>
     )
   }

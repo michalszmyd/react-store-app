@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :admin_users
-  devise_for :users
 
   resource :home, controller: :home
 
@@ -8,7 +7,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :products, only: %i[index show]
+    resources :users, only: :create
   end
 
-  get '*url' => 'home#show', constraints: { format: :html }
+  get '*path' => 'home#show', constraints: { format: :html }
+  devise_for :users, path: 'api/users', skip: :registrations, controllers: { sessions: 'api/sessions' }
 end

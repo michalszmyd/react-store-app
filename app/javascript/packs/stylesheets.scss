@@ -1,8 +1,13 @@
 @import '~bootstrap/dist/css/bootstrap';
+@import '../stylesheets/popups';
 
 html {
   padding: 0;
   margin: 0;
+}
+
+.error {
+  color: #E8554D;
 }
 
 .application {
@@ -30,6 +35,7 @@ html {
   font-weight: 300;
   position: relative;
   display: inline-block;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;

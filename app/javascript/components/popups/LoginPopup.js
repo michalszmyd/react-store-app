@@ -1,5 +1,7 @@
 import React from 'react';
 import UsersService from '../../services/UsersService';
+import { connect } from 'react-redux'
+import { updateUser } from '../../actions/user-actions';
 import { X } from 'react-feather';
 
 class LoginPopup extends React.Component {
@@ -9,6 +11,7 @@ class LoginPopup extends React.Component {
     const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
     this.usersService = new UsersService(csrfToken);
   }
+
   state = {
     email: '',
     password: '',
@@ -25,7 +28,10 @@ class LoginPopup extends React.Component {
 
     this.usersService
       .login(this.state)
-      .then(() => this.props.toggle())
+      .then((user) => {
+        this.props.toggle();
+        this.props.updateUser(user);
+      })
       .catch((data) => {
         data.then((value) => {
           this.setState({
@@ -79,4 +85,8 @@ class LoginPopup extends React.Component {
   }
 }
 
-export default LoginPopup;
+const mapDispatchToProps = {
+  updateUser: updateUser
+}
+
+export default connect(null, mapDispatchToProps)(LoginPopup);

@@ -1,4 +1,5 @@
 import ApiService from './ApiService';
+import UserModel from '../models/UserModel';
 
 class UsersService {
   constructor (token) {
@@ -10,7 +11,7 @@ class UsersService {
       body: JSON.stringify({ user: params }),
       csrfToken: this.token,
       url: 'users/sign_in'
-    })
+    }).then((json) => new UserModel(json))
   )
 
   register = (params) => (
@@ -18,7 +19,7 @@ class UsersService {
       body: JSON.stringify({ user: params }),
       csrfToken: this.token,
       url: 'users'
-    })
+    }).then((json) => new UserModel(json))
   )
 }
 

@@ -12,8 +12,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
+    "react-redux": "^7.0.2",
     "react-router-dom": "^5.0.0",
     "react_ujs": "^2.5.0",
+    "redux": "^4.0.1",
     "transform-runtime": "^0.0.0"
   },
   "devDependencies": {

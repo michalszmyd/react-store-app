@@ -4,6 +4,7 @@ class ProductModel {
     this.name = params.name;
     this.description = params.description;
     this.imageUrl = params.image_url;
+    this.price = params.price;
   }
 }
 

@@ -1,22 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import CartHeader from '../cart/CartHeader';
 
 class Navigation extends React.Component {
   render () {
     const user = this.props.user;
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <React.Fragment>
         <Link className="navbar-brand" to="/">Store</Link>
-        { Object.keys(user).length === 0 ?
+        { !user.id ?
           <React.Fragment>
             <div className="login-action" onClick={this.props.toggleLogin}>Login</div>
             <div className="login-action" onClick={this.props.toggleRegister}>Register</div>
           </React.Fragment> :
-          <div>{user.email}</div>
+          <React.Fragment>
+            <div>{user.email}</div>
+          </React.Fragment>
         }
-      </nav>
+      </React.Fragment>
     )
   }
 }

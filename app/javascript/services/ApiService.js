@@ -29,6 +29,23 @@ class ApiService {
       }
     })
   }
+
+  static delete = (params) => {
+    return fetch(`${DEFAULT_API_URL}/${params.url}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': params.csrfToken,
+        'accept': 'application/json'
+      }
+    }).then((response) => {
+      if (response.status >= 200 && response.status < 400) {
+        return response.json();
+      } else {
+        throw response.json();
+      }
+    })
+  }
 }
 
 export default ApiService;

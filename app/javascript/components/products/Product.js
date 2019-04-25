@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductService from '../../services/ProductService';
+import CartProductModel from '../../models/CartProductModel';
 
 class Product extends React.Component {
   state = {
@@ -14,6 +15,15 @@ class Product extends React.Component {
         product: product
       })
     })
+  }
+
+  addProductToCart = () => {
+    const params = {
+      product_id: this.state.product.id,
+      quantity: 1
+    }
+
+    this.props.addProductToCart(params);
   }
 
   render () {
@@ -31,7 +41,7 @@ class Product extends React.Component {
           </div>
           <div className="actions row">
             <div className="col-md-6">
-              <div className="action-button add-to-cart ">Add to cart</div>
+              <div className="action-button add-to-cart" onClick={this.addProductToCart.bind(this)}>Add to cart</div>
             </div>
             <div className="col-md-6">
               <div className="action-button add-to-favorites">Add to favorites</div>

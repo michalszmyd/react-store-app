@@ -7,6 +7,7 @@ import Product from './products/Product';
 import AppPopups from './popups/AppPopups';
 import Navigation from './header/Navigation';
 import CartHeader from './cart/CartHeader';
+import Footer from './Footer';
 
 class Main extends React.Component {
   toggleLogin = () => this.appPopups.toggleLogin();
@@ -21,28 +22,43 @@ class Main extends React.Component {
     }
   }
 
+  renderProduct = (props) => (
+    <Product {...props} addProductToCart={this.addProductToCart} />
+  )
+
   render () {
-    const user = this.props.user;
+    const { csrfToken, user } = this.props;
 
     return (
       <Router>
         <AppPopups ref={(appPopups) => this.appPopups = appPopups}/>
         <div className="application">
           <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" />
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Navigation toggleLogin={this.toggleLogin} toggleRegister={this.toggleRegister} />
-            { user.id ? <CartHeader ref={(cartHeader) => this.cartHeader = cartHeader} /> : null }
+          <nav className="navbar navbar-expand-lg navbar-light">
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <Navigation toggleLogin={this.toggleLogin} toggleRegister={this.toggleRegister} />
+                { user.id ? <CartHeader csrfToken={csrfToken} ref={(cartHeader) => this.cartHeader = cartHeader} /> : null }
+              </ul>
+            </div>
           </nav>
-          <div className="container">
+          <div>
             <Route path="/" exact component={Home} />
-            <Route path="/products/:id" render={(props) => <Product {...props} addProductToCart={this.addProductToCart} />} />
+            <Route path="/products/:id" render={this.renderProduct} />
           </div>
+          <Footer />
         </div>
       </Router>
     )
   }
 }
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  csrfToken: state.csrfToken
+});
 
 export default connect(mapStateToProps)(Main);

@@ -4,12 +4,13 @@ import { ShoppingBag } from 'react-feather';
 
 import CartProductPreview from './CartProductPreview';
 
+import { connect } from 'react-redux';
+
 class CartHeader extends React.Component {
   constructor (props) {
     super(props);
 
-    const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-    this.usersService = new UsersService(csrfToken);
+    this.usersService = new UsersService(this.props.csrfToken);
   }
 
   state = {
@@ -25,6 +26,8 @@ class CartHeader extends React.Component {
   }
 
   addProduct = (params) => {
+    this.usersService.token = this.props.csrfToken;
+
     this.usersService.addProductToCart(params).then((cartProducts) => {
       this.setState({
         cartProducts: cartProducts
@@ -47,9 +50,9 @@ class CartHeader extends React.Component {
 
     return (
       <div className="cart-header">
-        <div className="shopping-bag">
-          <ShoppingBag />Shopping bag
-        </div>
+        <li className="shopping-bag">
+          <span className="nav-link"><ShoppingBag width="20" height="20"/>Shopping bag</span>
+        </li>
         <div className="shopping-bag-body">
           { cartProducts.map((cartProduct) => (
             <CartProductPreview

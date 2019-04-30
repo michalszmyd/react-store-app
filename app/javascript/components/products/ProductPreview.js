@@ -6,7 +6,7 @@ class ProductPreview extends React.Component {
     const { id, name, imageUrl } = this.props.product;
 
     return (
-      <div className="product col-md-4">
+      <div className="product col-md-3">
         <h3>{name}</h3>
         <img src={imageUrl} />
         <Link className="action-button" to={`/products/${id}`}>Read more</Link>

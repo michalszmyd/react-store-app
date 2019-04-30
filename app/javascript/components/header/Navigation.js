@@ -12,11 +12,15 @@ class Navigation extends React.Component {
         <Link className="navbar-brand" to="/">Store</Link>
         { !user.id ?
           <React.Fragment>
-            <div className="login-action" onClick={this.props.toggleLogin}>Login</div>
-            <div className="login-action" onClick={this.props.toggleRegister}>Register</div>
+            <li className="nav-item login-action" onClick={this.props.toggleLogin}>
+              <span className="nav-link">Login</span>
+            </li>
+            <li className="nav-item login-action" onClick={this.props.toggleRegister}>
+              <span className="nav-link">Register</span>
+            </li>
           </React.Fragment> :
           <React.Fragment>
-            <div>{user.email}</div>
+            <li className="nav-item"><span className="nav-link"href="#">{user.email}</span></li>
           </React.Fragment>
         }
       </React.Fragment>

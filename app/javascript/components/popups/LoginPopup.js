@@ -1,17 +1,12 @@
 import React from 'react';
 import UsersService from '../../services/UsersService';
+import AuthenticateService from '../../services/AuthenticateService';
 import { connect } from 'react-redux'
 import { updateUser } from '../../actions/user-actions';
+import { updateCsrfToken } from '../../actions/authenticate-actions';
 import { X } from 'react-feather';
 
 class LoginPopup extends React.Component {
-  constructor (props) {
-    super(props);
-
-    const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-    this.usersService = new UsersService(csrfToken);
-  }
-
   state = {
     email: '',
     password: '',
@@ -21,16 +16,22 @@ class LoginPopup extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    const usersService = new UsersService(this.props.csrfToken);
+
     this.setState({
       formSubmitted: true,
       error: null
     })
 
-    this.usersService
+    usersService
       .login(this.state)
       .then((user) => {
-        this.props.toggle();
-        this.props.updateUser(user);
+        AuthenticateService.csrfToken().then((token) => {
+          this.props.updateCsrfToken(token);
+          this.props.toggle();
+          this.props.updateUser(user);
+        });
       })
       .catch((data) => {
         data.then((value) => {
@@ -85,8 +86,13 @@ class LoginPopup extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  csrfToken: state.csrfToken
+});
+
 const mapDispatchToProps = {
-  updateUser: updateUser
+  updateUser: updateUser,
+  updateCsrfToken: updateCsrfToken
 }
 
-export default connect(null, mapDispatchToProps)(LoginPopup);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPopup);

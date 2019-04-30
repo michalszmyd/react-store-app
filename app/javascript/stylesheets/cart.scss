@@ -1,6 +1,14 @@
 .cart-header {
+  svg {
+    margin-right: 10px;
+    padding-top: 5px;
+    box-sizing: border-box;
+  }
   position: relative;
-  width: 200%;
+  width: auto;
+  .shopping-bag {
+    display: inline-block;
+  }
   &:hover, &:focus {
     .shopping-bag-body {
       opacity: 1;

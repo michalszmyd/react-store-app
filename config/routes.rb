@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :users, only: :create
   end
 
-  # get '*path' => 'home#show', constraints: { format: :html }
+  get '*path' => 'home#show', constraints: -> { |req| req.format == :html }
   devise_for :users, path: 'api/users', skip: :registrations, controllers: { sessions: 'api/sessions' }
   devise_scope :user do
     get 'api/csrf_token', to: 'api/sessions#csrf_token'

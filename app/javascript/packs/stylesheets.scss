@@ -13,6 +13,64 @@
   }
 }
 
+@keyframes notification-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.alerts {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  text-align: center;
+  color: #fff;
+  z-index: 9999;
+  max-width: 50%;
+
+  .alert {
+    border: 1px solid #fff;
+    position: relative;
+    border-radius: 7px;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    text-align: justify;
+    min-width: 500px;
+    animation-name: notification-show;
+    animation-duration: 0.4s;
+
+    .alert-close {
+      position: absolute;
+      right: 10px;
+    }
+  }
+}
+
+.nav-link {
+  cursor: pointer;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    transition-duration: 0.3s;
+    background-color: #9c9c9c;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+  }
+  &:hover {
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
 html {
   padding: 0;
   margin: 0;
@@ -113,9 +171,21 @@ nav {
   }
 }
 
+@keyframes hero-product-slideup {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .hero-product {
+  margin-bottom: 45px;
   box-sizing: border-box;
   margin-top: 74px;
+  animation-name: hero-product-slideup;
+  animation-duration: 1.2s;
 
   img {
     width: 100%;
@@ -134,12 +204,11 @@ nav {
   .actions {
     .add-to-cart {
       display: block;
-      width: 80%;
     }
 
     .add-to-favorites {
       border-color: #FF766A;
-      width: 80%;
+      display: block;
       &:before {
         background-color: #FF766A;
       }

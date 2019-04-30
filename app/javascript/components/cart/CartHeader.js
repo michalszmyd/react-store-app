@@ -32,6 +32,10 @@ class CartHeader extends React.Component {
       this.setState({
         cartProducts: cartProducts
       })
+      this.props.pushAlert({
+        message: 'Product added to cart',
+        type: 'success'
+      })
     })
   }
 
@@ -41,7 +45,11 @@ class CartHeader extends React.Component {
         if (product.id !== id) return product;
       })
 
-      this.setState({ cartProducts: cartProducts })
+      this.setState({ cartProducts: cartProducts });
+      this.props.pushAlert({
+        message: 'Product removed from cart',
+        type: 'success'
+      })
     })
   }
 

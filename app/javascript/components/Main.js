@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Home from './home/Home';
 import Product from './products/Product';
 import AppPopups from './popups/AppPopups';
+import Alerts from './alerts/Alerts';
 import Navigation from './header/Navigation';
 import CartHeader from './cart/CartHeader';
 import Footer from './Footer';
@@ -26,12 +27,17 @@ class Main extends React.Component {
     <Product {...props} addProductToCart={this.addProductToCart} />
   )
 
+  pushAlert = (alert) => {
+    this.alerts.push(alert);
+  }
+
   render () {
     const { csrfToken, user } = this.props;
 
     return (
       <Router>
         <AppPopups ref={(appPopups) => this.appPopups = appPopups}/>
+        <Alerts ref={(alerts) => this.alerts = alerts} />
         <div className="application">
           <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" />
           <nav className="navbar navbar-expand-lg navbar-light">
@@ -41,7 +47,12 @@ class Main extends React.Component {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <Navigation toggleLogin={this.toggleLogin} toggleRegister={this.toggleRegister} />
-                { user.id ? <CartHeader csrfToken={csrfToken} ref={(cartHeader) => this.cartHeader = cartHeader} /> : null }
+                { user.id ?
+                  <CartHeader
+                    pushAlert={this.pushAlert}
+                    csrfToken={csrfToken}
+                    ref={(cartHeader) => this.cartHeader = cartHeader} />
+                  : null }
               </ul>
             </div>
           </nav>

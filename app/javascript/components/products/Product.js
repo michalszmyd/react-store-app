@@ -30,21 +30,23 @@ class Product extends React.Component {
     const { name, description, imageUrl } = this.state.product;
 
     return (
-      <div className="hero-product row">
-        <div className="col-md-6">
-          <img src={imageUrl} />
-        </div>
-        <div className="col-md-6 product-info">
-          <h1>{name}</h1>
-          <div className="product-description">
-            <p>{description}</p>
+      <div className="container">
+        <div className="hero-product row">
+          <div className="col-md-6">
+            <img src={imageUrl} />
           </div>
-          <div className="actions row">
-            <div className="col-md-6">
-              <div className="action-button add-to-cart" onClick={this.addProductToCart.bind(this)}>Add to cart</div>
+          <div className="col-md-6 product-info">
+            <h1>{name}</h1>
+            <div className="product-description">
+              <p>{description}</p>
             </div>
-            <div className="col-md-6">
-              <div className="action-button add-to-favorites">Add to favorites</div>
+            <div className="actions row">
+              <div className="col-md-6">
+                <div className="action-button add-to-cart" onClick={this.addProductToCart.bind(this)}>Add to cart</div>
+              </div>
+              <div className="col-md-6">
+                <div className="action-button add-to-favorites">Add to favorites</div>
+              </div>
             </div>
           </div>
         </div>

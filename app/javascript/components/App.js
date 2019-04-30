@@ -19,8 +19,6 @@ class App extends React.Component {
   constructor (props) {
     super(props);
 
-    window.store = store;
-
     if (this.props.currentUser) {
       const user = new UserModel(this.props.currentUser);
 

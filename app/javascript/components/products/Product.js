@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductService from '../../services/ProductService';
+import ProductsService from '../../services/ProductsService';
 import CartProductModel from '../../models/CartProductModel';
 
 class Product extends React.Component {
@@ -10,7 +10,7 @@ class Product extends React.Component {
   componentDidMount () {
     const productId = this.props.match.params.id;
 
-    ProductService.find(productId).then((product) => {
+    ProductsService.find(productId).then((product) => {
       this.setState({
         product: product
       })

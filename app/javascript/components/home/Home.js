@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductPreview from '../products/ProductPreview';
-import ProductService from '../../services/ProductService';
+import ProductsService from '../../services/ProductsService';
 import { ArrowDown } from 'react-feather';
 
 class Home extends React.Component {
@@ -9,7 +9,7 @@ class Home extends React.Component {
   }
 
   componentDidMount () {
-    ProductService.recent().then((products) => {
+    ProductsService.recent().then((products) => {
       this.setState({ products: products })
     }).catch((json) => {
       json.then((data) => {

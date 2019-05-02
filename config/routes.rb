@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :products, only: %i[index show]
     resources :users_products, only: %i[index create destroy]
     resources :users, only: :create
+    resources :categories, only: :index
   end
 
   get '*path' => 'home#show', constraints: ->(req) { req.format == :html }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Home from './home/Home';
 import Product from './products/Product';
+import Products from './products/Products';
 import AppPopups from './popups/AppPopups';
 import Alerts from './alerts/Alerts';
 import Navigation from './header/Navigation';
@@ -59,6 +60,7 @@ class Main extends React.Component {
           <div>
             <Route path="/" exact component={Home} />
             <Route path="/products/:id" render={this.renderProduct} />
+            <Route path="/products" exact component={Products} />
           </div>
           <Footer />
         </div>

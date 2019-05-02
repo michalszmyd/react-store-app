@@ -20,9 +20,10 @@ class Navigation extends React.Component {
             </li>
           </React.Fragment> :
           <React.Fragment>
-            <li className="nav-item"><span className="nav-link"href="#">{user.email}</span></li>
+            <li className="nav-item"><span className="nav-link" href="#">{user.email}</span></li>
           </React.Fragment>
         }
+        <li className="nav-item"><Link to="/products" className="nav-link">Products</Link></li>
       </React.Fragment>
     )
   }

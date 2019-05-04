@@ -7,7 +7,7 @@ class ProductsService {
   }
 
   static recent = () => {
-    return ApiService.get({ url: 'products' })
+    return ApiService.get({ url: `products?page=1&per=8` })
              .then((json) => (
                json.map((value) => new ProductModel(value))
              ))
@@ -20,10 +20,11 @@ class ProductsService {
              ))
   }
 
-  static filter = ({ categoriesIds, page }) => {
+  static filter = ({ categoriesIds, page, query }) => {
     const categoriesParam = `&category_id[]=${categoriesIds.join('&category_id[]=')}`;
+    const searchQuery = query ? `&query=${query}` : '';
 
-    return ApiService.get({ url: `products?page=${page}${categoriesParam}` })
+    return ApiService.get({ url: `products?page=${page}${searchQuery}${categoriesParam}` })
              .then((json) => (
                json.map((value) => new ProductModel(value))
              ))

@@ -8,7 +8,9 @@ module Api
       products = ProductsFilterService
         .new(scope, params)
         .filtered_products
-        .limit(params[:limit]).order(created_at: :desc)
+        .distinct
+        .page(params[:page])
+        .per(params[:per])
 
       render json: products.as_json
     end

@@ -3,7 +3,7 @@
 module Api
   class CategoriesController < BaseController
     def index
-      render json: Category.all
+      render json: Category.distinct.joins(:products_categories)
     end
   end
 end

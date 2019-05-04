@@ -8,9 +8,16 @@ class ProductsFilterService
 
   def filtered_products
     @scope.where(category_filter)
+          .where(*query_filter)
   end
 
   private
+
+  def query_filter
+    return [nil] if @params[:query].blank?
+
+    ['name ILIKE ?', "%#{@params[:query]}%"]
+  end
 
   def category_filter
     return unless @params[:category_id]&.reject(&:blank?)&.any?

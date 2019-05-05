@@ -25,7 +25,11 @@ class Main extends React.Component {
   }
 
   renderProduct = (props) => (
-    <Product {...props} addProductToCart={this.addProductToCart} />
+    <Product
+      {...props}
+      key={props.match.params.id}
+      addProductToCart={this.addProductToCart}
+    />
   )
 
   pushAlert = (alert) => {
@@ -59,7 +63,7 @@ class Main extends React.Component {
           </nav>
           <div>
             <Route path="/" exact component={Home} />
-            <Route path="/products/:id" render={this.renderProduct} />
+            <Route path="/products/:id" component={this.renderProduct} />
             <Route path="/products" exact component={Products} />
           </div>
           <Footer />

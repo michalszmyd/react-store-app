@@ -21,13 +21,22 @@
     opacity: 0;
     box-sizing: border-box;
     background-color: #fff;
-    position: absolute;
     z-index: -1;
     max-height: 320px;
     overflow-y: scroll;
+    position: absolute;
+    width: 250%;
 
     .cart-product {
+      position: relative;
       margin: 12px 0;
+      .remove-item {
+        z-index: 100;
+        position: absolute;
+        cursor: pointer;
+        right: 15px;
+        top: 15px;
+      }
     }
 
     img {

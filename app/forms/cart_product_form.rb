@@ -12,7 +12,7 @@ class CartProductForm
       @user_product.assign_attributes(@params)
       @user_product.save
     else
-      @user_product.update quantity: @user_product.quantity + @params[:quantity]
+      @user_product.update quantity: @user_product.quantity + @params[:quantity].to_i
     end
   end
 end

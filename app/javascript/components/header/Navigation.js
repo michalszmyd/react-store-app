@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Router, Link } from 'react-router-dom';
 import CartHeader from '../cart/CartHeader';
 
 class Navigation extends React.Component {

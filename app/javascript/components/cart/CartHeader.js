@@ -53,6 +53,18 @@ class CartHeader extends React.Component {
     })
   }
 
+  countOverallProductsValue = () => {
+    const products = this.state.cartProducts;
+    let summary = 0;
+
+    if (products.length > 0) {
+      const productAdd = (total, product) => total + product.totalPrice();
+      summary = products.reduce(productAdd, 0);
+    }
+
+    return `\$${summary}`;
+  }
+
   render () {
     const cartProducts = this.state.cartProducts;
 
@@ -69,8 +81,8 @@ class CartHeader extends React.Component {
               cartProduct={cartProduct}
             />
           )) }
-          <div className="text-center">
-            Checkout
+          <div className="text-center overall-price">
+            Cart overall: {this.countOverallProductsValue()}
           </div>
         </div>
       </div>

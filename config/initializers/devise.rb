@@ -3,6 +3,11 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+  require 'devise/strategies/jwt_token_authenticate'
+  config.warden do |manager|
+    manager.strategies.add(:jwt_token_authenticate, Devise::Strategies::JwtTokenAuthenticate)
+    manager.default_strategies(scope: :user).unshift :jwt_token_authenticate
+  end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
